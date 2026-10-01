@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main()
+{
+    int i, ic = 0, cc = 0, oc = 0;
+    int m, j;
+
+    char b[30];
+    char operators[30];
+    char identifiers[30];
+    int constants[30];
+
+    printf("Enter the string: ");
+    scanf("%[^\n]", b);
+
+    for (i = 0; i < strlen(b); i++)
+    {
+        /* Ignore spaces */
+        if (isspace(b[i]))
+        {
+            continue;
+        }
+
+        /* Identify alphabets */
+        else if (isalpha(b[i]))
+        {
+            identifiers[ic] = b[i];
+            ic++;
+        }
+
+        /* Identify numbers */
+        else if (isdigit(b[i]))
+        {
+            m = b[i] - '0';
+
+            i++;
+
+            while (isdigit(b[i]))
+            {
+                m = m * 10 + (b[i] - '0');
+                i++;
+            }
+
+            i--;
+
+            constants[cc] = m;
+            cc++;
+        }
+
+        /* Identify operators */
+        else
+        {
+            if (b[i] == '*')
+            {
+                operators[oc] = '*';
+                oc++;
+            }
+            else if (b[i] == '-')
+            {
+                operators[oc] = '-';
+                oc++;
+            }
+            else if (b[i] == '+')
+            {
+                operators[oc] = '+';
+                oc++;
+            }
+            else if (b[i] == '=')
+            {
+                operators[oc] = '=';
+                oc++;
+            }
+        }
+    }
+
+    /* Display identifiers */
+    printf("\nIdentifiers: ");
+
+    for (j = 0; j < ic; j++)
+    {
+        printf("%c ", identifiers[j]);
+    }
+
+    /* Display constants */
+    printf("\nConstants: ");
+
+    for (j = 0; j < cc; j++)
+    {
+        printf("%d ", constants[j]);
+    }
+
+    /* Display operators */
+    printf("\nOperators: ");
+
+    for (j = 0; j < oc; j++)
+    {
+        printf("%c ", operators[j]);
+    }
+
+    printf("\n");
+
+    return 0;
+}
