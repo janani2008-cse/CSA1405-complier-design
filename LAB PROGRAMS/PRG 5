@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main()
+{
+    char str[500];
+    int spaces = 0;
+    int newlines = 0;
+    int characters = 0;
+
+    printf("Enter text (use ~ to end):\n");
+
+    scanf("%[^~]", str);
+
+    for (int i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] == ' ' || str[i] == '\t')
+        {
+            spaces++;
+        }
+        else if (str[i] == '\n')
+        {
+            newlines++;
+        }
+        else
+        {
+            characters++;
+        }
+    }
+
+    printf("\nTotal number of whitespaces: %d\n", spaces);
+    printf("Total number of newline characters: %d\n", newlines);
+    printf("Total number of characters: %d\n", characters);
+
+    return 0;
+}
